@@ -3,10 +3,11 @@ package com.andersonbco.desafio.domain;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,8 +15,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Phone {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@JsonIgnore
+	private String id;
 	
 	private Integer number;
 	
@@ -25,12 +28,12 @@ public class Phone {
 	@JoinColumn(name="USER_ID")
 	@JsonIgnore
 	private User user;
-	
-	public Long getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -49,6 +52,13 @@ public class Phone {
 	public void setDdd(Integer ddd) {
 		this.ddd = ddd;
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 }

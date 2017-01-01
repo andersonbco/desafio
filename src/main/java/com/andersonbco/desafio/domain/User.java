@@ -2,20 +2,24 @@ package com.andersonbco.desafio.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	private String id;
 	
 	private String name;
 	
@@ -26,13 +30,19 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Phone> phones;
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime created;
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime modified;
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime last_login;
 	
-	private UUID token;
+	private String token;
 	
 	public User() {
 	}
@@ -41,11 +51,11 @@ public class User {
 		this.name = name;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -105,13 +115,12 @@ public class User {
 		this.last_login = last_login;
 	}
 
-	public UUID getToken() {
+	public String getToken() {
 		return token;
 	}
 
-	public void setToken(UUID token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
-	
 	
 }
