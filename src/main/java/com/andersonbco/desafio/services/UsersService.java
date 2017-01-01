@@ -32,7 +32,7 @@ public class UsersService {
 			
 		return user;
 	}
-	
+
 	public List<User> listar() {
 		return usersRepository.findAll();
 	}
@@ -62,5 +62,15 @@ public class UsersService {
 		} catch(EmptyResultDataAccessException e) {
 			throw new UsuarioNaoEncontradoException("Usuário não encontrado");
 		}
+	}
+	
+	public void atualizar(User newUser) {
+		User oldUser = buscar(newUser.getId());
+		
+		newUser.setCreated(oldUser.getCreated());
+		newUser.setModified(LocalDateTime.now());
+		newUser.setLast_login(oldUser.getLast_login());
+		
+		usersRepository.save(newUser);
 	}
 }

@@ -1,5 +1,6 @@
 package com.andersonbco.desafio.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ public class Phone {
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@Column(columnDefinition = "BINARY(16)")
 	@JsonIgnore
 	private String id;
 	

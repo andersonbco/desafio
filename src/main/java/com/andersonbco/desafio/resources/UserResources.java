@@ -44,4 +44,11 @@ public class UserResources {
 		usersService.excluir(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
+	@RequestMapping(value="/cadastro/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<User> atualizar(@RequestBody User user, @PathVariable("id") String id) {
+		
+		user.setId(id);
+		usersService.atualizar(user);
+		return ResponseEntity.status(HttpStatus.OK).body(user);
+	}
 }

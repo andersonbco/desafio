@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class User {
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@Column(columnDefinition = "BINARY(16)")
 	private String id;
 	
 	private String name;
@@ -43,7 +45,7 @@ public class User {
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime last_login;
 	
-	private String token;
+    private String token;
 	
 	public User() {
 	}
