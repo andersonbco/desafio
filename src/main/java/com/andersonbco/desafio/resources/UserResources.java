@@ -37,4 +37,11 @@ public class UserResources {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(usersService.salvar(user));
 	}
+
+	@RequestMapping(value="/cadastro/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<User> deletar(@PathVariable("id") String id) {
+		
+		usersService.excluir(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
 }

@@ -3,6 +3,7 @@ package com.andersonbco.desafio.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class User {
 	
 	private String password;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Phone> phones;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")

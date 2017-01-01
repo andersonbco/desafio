@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.andersonbco.desafio.domain.Phone;
@@ -53,5 +54,13 @@ public class UsersService {
 		}
 		
 		return user;
+	}
+	
+	public void excluir(String id) {
+		try {
+			usersRepository.delete(id);
+		} catch(EmptyResultDataAccessException e) {
+			throw new UsuarioNaoEncontradoException("Usuário não encontrado");
+		}
 	}
 }
