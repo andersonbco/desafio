@@ -2,6 +2,7 @@ package com.andersonbco.desafio.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +46,7 @@ public class User {
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
 	private LocalDateTime last_login;
 	
-    private String token;
+    private UUID token;
 	
 	public User() {
 	}
@@ -118,11 +119,11 @@ public class User {
 		this.last_login = last_login;
 	}
 
-	public String getToken() {
+	public UUID getToken() {
 		return token;
 	}
 
-	public void setToken(String token) {
+	public void setToken(UUID token) {
 		this.token = token;
 	}
 	

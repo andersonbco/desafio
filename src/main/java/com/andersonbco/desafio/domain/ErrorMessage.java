@@ -2,14 +2,14 @@ package com.andersonbco.desafio.domain;
 
 public class ErrorMessage {
 
-	private String message;
+	private String mensagem;
 
-	public String getMessage() {
-		return message;
+	public String getMensagem() {
+		return mensagem;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
 	
 }
