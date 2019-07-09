@@ -1,4 +1,4 @@
-package com.andersonbco.desafio.services.exceptions;
+package com.andersonbco.desafio.service.exceptions;
 
 public class SenhaInvalidaException extends RuntimeException {
 

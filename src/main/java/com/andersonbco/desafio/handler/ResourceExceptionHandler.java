@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.andersonbco.desafio.domain.ErrorMessage;
-import com.andersonbco.desafio.services.exceptions.EmailJaExistenteException;
-import com.andersonbco.desafio.services.exceptions.NaoAutorizadoException;
-import com.andersonbco.desafio.services.exceptions.SenhaInvalidaException;
-import com.andersonbco.desafio.services.exceptions.TokenInvalidoException;
-import com.andersonbco.desafio.services.exceptions.UsuarioInvalidoException;
-import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException;
+import com.andersonbco.desafio.service.exceptions.EmailJaExistenteException;
+import com.andersonbco.desafio.service.exceptions.NaoAutorizadoException;
+import com.andersonbco.desafio.service.exceptions.SenhaInvalidaException;
+import com.andersonbco.desafio.service.exceptions.TokenInvalidoException;
+import com.andersonbco.desafio.service.exceptions.UsuarioInvalidoException;
+import com.andersonbco.desafio.service.exceptions.UsuarioNaoEncontradoException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
