@@ -1,5 +1,6 @@
 package com.andersonbco.desafio.entity
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -20,9 +21,9 @@ class User(
         var name: String,
         var email: String,
         var password: String,
-        var created: LocalDateTime? = LocalDateTime.now(),
-        var modified: LocalDateTime? = LocalDateTime.now(),
-        var lastLogin: LocalDateTime? = null
+        @JsonFormat(pattern="dd-MM-yyyy") var created: LocalDateTime? = LocalDateTime.now(),
+        @JsonFormat(pattern="dd-MM-yyyy") var modified: LocalDateTime? = LocalDateTime.now(),
+        @JsonFormat(pattern="dd-MM-yyyy") var lastLogin: LocalDateTime? = null
 )
 
 data class UserDTO(
