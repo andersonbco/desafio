@@ -1,35 +1,6 @@
-
-# Created by https://www.gitignore.io/api/gradle
-.idea
-### Gradle ###
 .gradle
 /build/
-
-*.class
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
-
-# End of https://www.gitignore.io/api/gradle
-
-### Maven ###
-target/
-!.mvn/wrapper/maven-wrapper.jar
-*.mvn
-*.mvnw
-mvnw
-*.zip
-logs/*.*
-logs/archive/*.*
+!gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -44,7 +15,6 @@ logs/archive/*.*
 *.iws
 *.iml
 *.ipr
-.DS_Store
 
 ### NetBeans ###
 nbproject/private/
@@ -54,10 +24,5 @@ dist/
 nbdist/
 .nb-gradle/
 
-## OSX ##
-*.DS_STORE
-.checkstyle
-/mvnw
-logs/logfile.log
-logs/archive/
-/logs/
+database/
+out/
