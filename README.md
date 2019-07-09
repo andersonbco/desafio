@@ -1,5 +1,7 @@
 # Desafio Java Concrete Solutions
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b41be266deb6461897c1d26372630820)](https://app.codacy.com/app/andersonbco/desafio?utm_source=github.com&utm_medium=referral&utm_content=andersonbco/desafio&utm_campaign=Badge_Grade_Settings)
+
 Crie uma aplicação que exponha uma API RESTful de criação de usuários e login.
 
 Todos os endpoints devem aceitar e responder somente JSON, inclusive ao responder mensagens de erro.
