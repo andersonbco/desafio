@@ -6,10 +6,7 @@ import com.andersonbco.desafio.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -23,7 +20,7 @@ class UserResource(private val userService: UserService) {
     }
 
     @PostMapping(consumes = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
-    fun save(userDTO: UserDTO): ResponseEntity<User> {
+    fun save(@RequestBody userDTO: UserDTO): ResponseEntity<User> {
         val user: User = userService.save(userDTO)
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user)
