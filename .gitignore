@@ -20,3 +20,44 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/gradle
+
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.mvn
+*.mvnw
+mvnw
+*.zip
+logs/*.*
+logs/archive/*.*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.DS_Store
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+## OSX ##
+*.DS_STORE
+.checkstyle
+/mvnw
+logs/logfile.log
+logs/archive/
+/logs/
