@@ -15,7 +15,7 @@ class UserService(
         private val userRepository: UserRepository,
         private val phoneRepository: PhoneRepository) {
 
-    fun find(id: Long): User = userRepository.findByIdOrNull(id)
+    fun find(id: Long): UserDTO = userRepository.findByIdOrNull(id)?.let { it -> convertUserToUserDTO(it) }
             ?: throw UsuarioNaoEncontradoException("Usuário não encontrado")
 
     fun findAll(): List<UserDTO> = userRepository.findAll().map { convertUserToUserDTO(it) }
@@ -42,6 +42,6 @@ class UserService(
 
         val phones: List<PhoneDTO> = phoneRepository.findAllByUser(user).map { PhoneDTO(it.ddd, it.number) }
 
-        return UserDTO(user.name, user.email, user.password, phones)
+        return UserDTO(user.id, user.name, user.email, user.password, phones)
     }
 }

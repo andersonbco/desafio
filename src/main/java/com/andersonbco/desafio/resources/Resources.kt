@@ -19,6 +19,13 @@ class UserResource(private val userService: UserService) {
         return ResponseEntity.ok(users)
     }
 
+    @GetMapping("/{id}")
+    fun findOne(@PathVariable id: Long): ResponseEntity<UserDTO> {
+        val user: UserDTO = userService.find(id)
+
+        return ResponseEntity.ok(user)
+    }
+
     @PostMapping(consumes = arrayOf(MediaType.APPLICATION_JSON_UTF8_VALUE))
     fun save(@RequestBody userDTO: UserDTO): ResponseEntity<User> {
         val user: User = userService.save(userDTO)
