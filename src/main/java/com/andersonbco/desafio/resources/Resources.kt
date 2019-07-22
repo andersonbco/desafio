@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*
 class UserResource(private val userService: UserService) {
 
     @GetMapping
-    fun findAll(): ResponseEntity<List<User>> {
-        val users:List<User> = userService.findAll()
+    fun findAll(): ResponseEntity<List<UserDTO>> {
+        val users: List<UserDTO> = userService.findAll()
 
         return ResponseEntity.ok(users)
     }
