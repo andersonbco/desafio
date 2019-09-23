@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +21,14 @@ import com.andersonbco.desafio.services.exceptions.NaoAutorizadoException;
 import com.andersonbco.desafio.services.exceptions.SessaoInvalidaException;
 import com.andersonbco.desafio.services.exceptions.TokenInvalidoException;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping(
     value = "/cadastro")
+@AllArgsConstructor
 public class CadastroResources {
 
-  @Autowired
   private UsersService usersService;
 
   @RequestMapping(
@@ -51,6 +52,7 @@ public class CadastroResources {
     } catch (IllegalArgumentException e) {
       throw new TokenInvalidoException("Token inválido");
     }
+
     usersService.buscarPorToken(token);
 
     User user = usersService.buscar(id);

@@ -1,7 +1,6 @@
 
 package com.andersonbco.desafio.resources;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.andersonbco.desafio.domain.User;
 import com.andersonbco.desafio.services.UsersService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping(
     value = "/login")
+@AllArgsConstructor
 public class LoginResources {
 
-  @Autowired
   private UsersService usersService;
 
   @RequestMapping(

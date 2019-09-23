@@ -11,7 +11,7 @@ import com.andersonbco.desafio.domain.User;
 @Repository
 public interface UsersRepository extends JpaRepository<User, UUID> {
 
-  public User findByEmailIgnoreCase(String email);
+  User findByEmailIgnoreCase(String email);
 
-  public User findByToken(UUID token);
+  User findByToken(UUID token);
 }

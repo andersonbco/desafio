@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +19,14 @@ import com.andersonbco.desafio.services.exceptions.SenhaInvalidaException;
 import com.andersonbco.desafio.services.exceptions.UsuarioInvalidoException;
 import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Service
 public class UsersService {
 
-  @Autowired
   private UsersRepository usersRepository;
 
-  @Autowired
   private PhonesRepository phonesRepository;
 
   public User buscar(UUID id) {
