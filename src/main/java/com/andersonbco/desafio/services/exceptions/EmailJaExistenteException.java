@@ -1,17 +1,18 @@
+
 package com.andersonbco.desafio.services.exceptions;
 
-public class EmailJaExistenteException extends RuntimeException{
+public class EmailJaExistenteException extends RuntimeException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5377409233914155231L;
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -5377409233914155231L;
 
-	public EmailJaExistenteException(String message) {
-		super(message);
-	}
+  public EmailJaExistenteException(String message) {
+    super(message);
+  }
 
-	public EmailJaExistenteException(String message, Throwable cause) {
-		super(message, cause);
-	}
+  public EmailJaExistenteException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }

@@ -1,3 +1,4 @@
+
 package com.andersonbco.desafio.handler;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,75 +21,83 @@ import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-	@ExceptionHandler(EmailJaExistenteException.class)
-	public ResponseEntity<ErrorMessage> handleEmailJaExistenteException(EmailJaExistenteException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("E-mail já existente");
-		
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(mensagem);
-	}
+  @ExceptionHandler(EmailJaExistenteException.class)
+  public ResponseEntity<ErrorMessage> handleEmailJaExistenteException(EmailJaExistenteException e,
+      HttpServletRequest request) {
 
-	@ExceptionHandler(UsuarioNaoEncontradoException.class)
-	public ResponseEntity<ErrorMessage> handleUsuarioNaoEncontradoException(UsuarioNaoEncontradoException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Usuário não encontrado");
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
-	}
-	
-	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-	public ResponseEntity<ErrorMessage> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Esta API aceita somente o formato JSON");
-		
-		return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(mensagem);
-	}
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("E-mail já existente");
 
-	@ExceptionHandler(NaoAutorizadoException.class)
-	public ResponseEntity<ErrorMessage> handleNaoAutorizadoException(NaoAutorizadoException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Não autorizado");
-		
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(mensagem);
-	}
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(mensagem);
+  }
 
-	@ExceptionHandler(TokenInvalidoException.class)
-	public ResponseEntity<ErrorMessage> handleTokenInvalidoException(TokenInvalidoException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Token inválido");
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagem);
-	}
+  @ExceptionHandler(UsuarioNaoEncontradoException.class)
+  public ResponseEntity<ErrorMessage> handleUsuarioNaoEncontradoException(
+      UsuarioNaoEncontradoException e, HttpServletRequest request) {
 
-	@ExceptionHandler(ServletRequestBindingException.class)
-	public ResponseEntity<ErrorMessage> handleServletRequestBindingException(ServletRequestBindingException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Token não informado");
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagem);
-	}
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Usuário não encontrado");
 
-	@ExceptionHandler(UsuarioInvalidoException.class)
-	public ResponseEntity<ErrorMessage> handleUsuarioInvalidoException(UsuarioInvalidoException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Usuário e/ou senha inválidos");
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
-	}
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
+  }
 
-	@ExceptionHandler(SenhaInvalidaException.class)
-	public ResponseEntity<ErrorMessage> handleSenhaInvalidaException(SenhaInvalidaException e, HttpServletRequest request) {
-		
-		ErrorMessage mensagem = new ErrorMessage();
-		mensagem.setMensagem("Usuário e/ou senha inválidos");
-		
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(mensagem);
-	}
+  @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+  public ResponseEntity<ErrorMessage> handleHttpMediaTypeNotSupportedException(
+      HttpMediaTypeNotSupportedException e, HttpServletRequest request) {
+
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Esta API aceita somente o formato JSON");
+
+    return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(mensagem);
+  }
+
+  @ExceptionHandler(NaoAutorizadoException.class)
+  public ResponseEntity<ErrorMessage> handleNaoAutorizadoException(NaoAutorizadoException e,
+      HttpServletRequest request) {
+
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Não autorizado");
+
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(mensagem);
+  }
+
+  @ExceptionHandler(TokenInvalidoException.class)
+  public ResponseEntity<ErrorMessage> handleTokenInvalidoException(TokenInvalidoException e,
+      HttpServletRequest request) {
+
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Token inválido");
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagem);
+  }
+
+  @ExceptionHandler(ServletRequestBindingException.class)
+  public ResponseEntity<ErrorMessage> handleServletRequestBindingException(
+      ServletRequestBindingException e, HttpServletRequest request) {
+
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Token não informado");
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagem);
+  }
+
+  @ExceptionHandler(UsuarioInvalidoException.class)
+  public ResponseEntity<ErrorMessage> handleUsuarioInvalidoException(UsuarioInvalidoException e,
+      HttpServletRequest request) {
+
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Usuário e/ou senha inválidos");
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
+  }
+
+  @ExceptionHandler(SenhaInvalidaException.class)
+  public ResponseEntity<ErrorMessage> handleSenhaInvalidaException(SenhaInvalidaException e,
+      HttpServletRequest request) {
+
+    ErrorMessage mensagem = new ErrorMessage();
+    mensagem.setMensagem("Usuário e/ou senha inválidos");
+
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(mensagem);
+  }
 }

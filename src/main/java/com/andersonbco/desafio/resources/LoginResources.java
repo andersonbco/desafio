@@ -1,3 +1,4 @@
+
 package com.andersonbco.desafio.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,19 @@ import com.andersonbco.desafio.domain.User;
 import com.andersonbco.desafio.services.UsersService;
 
 @RestController
-@RequestMapping(value="/login")
+@RequestMapping(
+    value = "/login")
 public class LoginResources {
 
-	@Autowired
-	private UsersService usersService;
-	
-	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> efetuarLogin(@RequestBody User user) {
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(usersService.efetuarLogin(user));
-	}
+  @Autowired
+  private UsersService usersService;
+
+  @RequestMapping(
+      method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<User> efetuarLogin(@RequestBody User user) {
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(usersService.efetuarLogin(user));
+  }
 }

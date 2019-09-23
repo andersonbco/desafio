@@ -1,4 +1,14 @@
+
 package com.andersonbco.desafio.services;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import com.andersonbco.desafio.domain.Phone;
 import com.andersonbco.desafio.domain.User;
@@ -9,20 +19,15 @@ import com.andersonbco.desafio.services.exceptions.NaoAutorizadoException;
 import com.andersonbco.desafio.services.exceptions.SenhaInvalidaException;
 import com.andersonbco.desafio.services.exceptions.UsuarioInvalidoException;
 import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService {
 
-  @Autowired private UsersRepository usersRepository;
+  @Autowired
+  private UsersRepository usersRepository;
 
-  @Autowired private PhonesRepository phonesRepository;
+  @Autowired
+  private PhonesRepository phonesRepository;
 
   public User buscar(UUID id) {
 
@@ -54,7 +59,7 @@ public class UsersService {
 
     user.setCreated(LocalDateTime.now());
     user.setModified(LocalDateTime.now());
-    user.setLast_login(LocalDateTime.now());
+    user.setLastLogin(LocalDateTime.now());
 
     user.setToken(UUID.randomUUID());
 
@@ -81,7 +86,7 @@ public class UsersService {
 
     newUser.setCreated(oldUser.getCreated());
     newUser.setModified(LocalDateTime.now());
-    newUser.setLast_login(oldUser.getLast_login());
+    newUser.setLastLogin(oldUser.getLastLogin());
 
     newUser.setToken(UUID.randomUUID());
 
@@ -98,7 +103,7 @@ public class UsersService {
       throw new SenhaInvalidaException("Usuário e/ou senha inválidos");
     }
 
-    user.setLast_login(LocalDateTime.now());
+    user.setLastLogin(LocalDateTime.now());
 
     return usersRepository.save(user);
   }

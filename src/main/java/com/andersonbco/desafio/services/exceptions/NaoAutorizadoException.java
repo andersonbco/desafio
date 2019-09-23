@@ -1,17 +1,18 @@
+
 package com.andersonbco.desafio.services.exceptions;
 
-public class NaoAutorizadoException extends RuntimeException{
+public class NaoAutorizadoException extends RuntimeException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2635563909908834588L;
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -2635563909908834588L;
 
-	public NaoAutorizadoException(String message) {
-		super(message);
-	}
+  public NaoAutorizadoException(String message) {
+    super(message);
+  }
 
-	public NaoAutorizadoException(String message, Throwable cause) {
-		super(message, cause);
-	}
+  public NaoAutorizadoException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }
