@@ -20,10 +20,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class User {
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@GeneratedValue(generator = "custom-id")
+	@GenericGenerator(name="custom-id", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(columnDefinition = "BINARY(16)")
-	private String id;
+	private UUID id;
 	
 	private String name;
 	
@@ -55,11 +55,11 @@ public class User {
 		this.name = name;
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

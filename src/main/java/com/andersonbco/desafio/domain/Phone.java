@@ -1,5 +1,6 @@
 package com.andersonbco.desafio.domain;
 
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,11 +17,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Phone {
 	
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@GeneratedValue(generator = "custom-id")
+	@GenericGenerator(name="custom-id", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(columnDefinition = "BINARY(16)")
 	@JsonIgnore
-	private String id;
+	private UUID id;
 	
 	private Integer number;
 	
@@ -31,11 +32,11 @@ public class Phone {
 	@JsonIgnore
 	private User user;
 
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

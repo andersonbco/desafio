@@ -35,7 +35,7 @@ public class CadastroResources {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> buscar(@PathVariable("id") String id, @RequestHeader(value="token") String tokenString) {
+	public ResponseEntity<User> buscar(@PathVariable("id") UUID id, @RequestHeader(value="token") String tokenString) {
 		
 		UUID token;
 		try {
@@ -62,13 +62,13 @@ public class CadastroResources {
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<User> deletar(@PathVariable("id") String id) {
+	public ResponseEntity<User> deletar(@PathVariable("id") UUID id) {
 		
 		usersService.excluir(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> atualizar(@RequestBody User user, @PathVariable("id") String id) {
+	public ResponseEntity<User> atualizar(@RequestBody User user, @PathVariable("id") UUID id) {
 		
 		user.setId(id);
 		usersService.atualizar(user);

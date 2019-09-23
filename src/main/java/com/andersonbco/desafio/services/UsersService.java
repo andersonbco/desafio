@@ -24,7 +24,7 @@ public class UsersService {
 
   @Autowired private PhonesRepository phonesRepository;
 
-  public User buscar(String id) {
+  public User buscar(UUID id) {
 
     Optional<User> optUser = usersRepository.findById(id);
 
@@ -68,7 +68,7 @@ public class UsersService {
     return user;
   }
 
-  public void excluir(String id) {
+  public void excluir(UUID id) {
     try {
       usersRepository.deleteById(id);
     } catch (EmptyResultDataAccessException e) {
