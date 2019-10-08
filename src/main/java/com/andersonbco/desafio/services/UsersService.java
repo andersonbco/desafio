@@ -6,28 +6,32 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.andersonbco.desafio.domain.Phone;
 import com.andersonbco.desafio.domain.User;
 import com.andersonbco.desafio.repository.PhonesRepository;
 import com.andersonbco.desafio.repository.UsersRepository;
 import com.andersonbco.desafio.services.exceptions.EmailJaExistenteException;
 import com.andersonbco.desafio.services.exceptions.NaoAutorizadoException;
 import com.andersonbco.desafio.services.exceptions.SenhaInvalidaException;
+import com.andersonbco.desafio.services.exceptions.SessaoInvalidaException;
 import com.andersonbco.desafio.services.exceptions.UsuarioInvalidoException;
 import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @Service
 public class UsersService {
 
   private UsersRepository usersRepository;
 
   private PhonesRepository phonesRepository;
+
+  @Autowired
+  public UsersService(UsersRepository usersRepository, PhonesRepository phonesRepository) {
+    this.usersRepository = usersRepository;
+    this.phonesRepository = phonesRepository;
+  }
 
   public User buscar(UUID id) {
 
@@ -36,7 +40,9 @@ public class UsersService {
     return optUser.orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado"));
   }
 
-  public User buscarPorToken(UUID token) {
+  public User buscarPorToken(UUID id, String tokenString) {
+
+    UUID token = UUID.fromString(tokenString);
 
     User user = usersRepository.findByToken(token);
 
@@ -44,6 +50,13 @@ public class UsersService {
       throw new NaoAutorizadoException("Não autorizado");
     }
 
+    this.buscar(id);
+
+    if (!user.getToken().equals(token)) {
+      throw new NaoAutorizadoException("Não autorizado");
+    } else if (user.getLastLogin().isBefore(LocalDateTime.now().minusMinutes(30))) {
+      throw new SessaoInvalidaException("Sessão inválida");
+    }
     return user;
   }
 
@@ -63,14 +76,10 @@ public class UsersService {
 
     user.setToken(UUID.randomUUID());
 
-    usersRepository.save(user);
+    // TODO não está salvando os telefones
+    user.getPhones().forEach(p -> phonesRepository.save(p));
 
-    for (Phone p : user.getPhones()) {
-      p.setUser(user);
-      phonesRepository.save(p);
-    }
-
-    return user;
+    return usersRepository.save(user);
   }
 
   public void excluir(UUID id) {

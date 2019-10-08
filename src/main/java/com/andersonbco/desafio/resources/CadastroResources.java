@@ -1,10 +1,10 @@
 
 package com.andersonbco.desafio.resources;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.andersonbco.desafio.domain.User;
 import com.andersonbco.desafio.services.UsersService;
-import com.andersonbco.desafio.services.exceptions.NaoAutorizadoException;
-import com.andersonbco.desafio.services.exceptions.SessaoInvalidaException;
-import com.andersonbco.desafio.services.exceptions.TokenInvalidoException;
-
-import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(
     value = "/cadastro")
-@AllArgsConstructor
 public class CadastroResources {
 
   private UsersService usersService;
+
+  @Autowired
+  public CadastroResources(UsersService usersService) {
+    this.usersService = usersService;
+  }
 
   @RequestMapping(
       method = RequestMethod.GET,
@@ -46,24 +45,7 @@ public class CadastroResources {
   public ResponseEntity<User> buscar(@PathVariable("id") UUID id, @RequestHeader(
       value = "token") String tokenString) {
 
-    UUID token;
-    try {
-      token = UUID.fromString(tokenString);
-    } catch (IllegalArgumentException e) {
-      throw new TokenInvalidoException("Token inválido");
-    }
-
-    usersService.buscarPorToken(token);
-
-    User user = usersService.buscar(id);
-
-    if (!user.getToken().equals(token)) {
-      throw new NaoAutorizadoException("Não autorizado");
-    } else if (user.getLastLogin().isBefore(LocalDateTime.now().minusMinutes(30))) {
-      throw new SessaoInvalidaException("Sessão inválida");
-    }
-
-    return ResponseEntity.status(HttpStatus.OK).body(user);
+    return ResponseEntity.status(HttpStatus.OK).body(usersService.buscarPorToken(id, tokenString));
   }
 
   @RequestMapping(
