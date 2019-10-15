@@ -1,5 +1,5 @@
 
-package com.andersonbco.desafio.domain;
+package com.andersonbco.desafio.entity;
 
 import java.util.UUID;
 
@@ -13,8 +13,9 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
+@Data
 @Entity
 public class Phone {
 
@@ -26,7 +27,6 @@ public class Phone {
       strategy = "org.hibernate.id.UUIDGenerator")
   @Column(
       columnDefinition = "BINARY(16)")
-  @JsonIgnore
   private UUID id;
 
   private Integer number;
@@ -37,39 +37,5 @@ public class Phone {
       fetch = FetchType.LAZY)
   @JoinColumn(
       name = "USER_ID")
-  @JsonIgnore
   private User user;
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-  public Integer getNumber() {
-    return number;
-  }
-
-  public void setNumber(Integer number) {
-    this.number = number;
-  }
-
-  public Integer getDdd() {
-    return ddd;
-  }
-
-  public void setDdd(Integer ddd) {
-    this.ddd = ddd;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
 }

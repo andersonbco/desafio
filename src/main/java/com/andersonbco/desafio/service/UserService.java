@@ -1,5 +1,5 @@
 
-package com.andersonbco.desafio.services;
+package com.andersonbco.desafio.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,21 +9,21 @@ import java.util.UUID;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.andersonbco.desafio.domain.User;
+import com.andersonbco.desafio.entity.User;
+import com.andersonbco.desafio.exceptions.EmailJaExistenteException;
+import com.andersonbco.desafio.exceptions.NaoAutorizadoException;
+import com.andersonbco.desafio.exceptions.SenhaInvalidaException;
+import com.andersonbco.desafio.exceptions.SessaoInvalidaException;
+import com.andersonbco.desafio.exceptions.UsuarioInvalidoException;
+import com.andersonbco.desafio.exceptions.UsuarioNaoEncontradoException;
 import com.andersonbco.desafio.repository.PhonesRepository;
 import com.andersonbco.desafio.repository.UsersRepository;
-import com.andersonbco.desafio.services.exceptions.EmailJaExistenteException;
-import com.andersonbco.desafio.services.exceptions.NaoAutorizadoException;
-import com.andersonbco.desafio.services.exceptions.SenhaInvalidaException;
-import com.andersonbco.desafio.services.exceptions.SessaoInvalidaException;
-import com.andersonbco.desafio.services.exceptions.UsuarioInvalidoException;
-import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UsersService {
+public class UserService {
 
   private UsersRepository usersRepository;
 

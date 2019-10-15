@@ -1,16 +1,16 @@
 
-package com.andersonbco.desafio.resources;
+package com.andersonbco.desafio.resource;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.andersonbco.desafio.domain.User;
-import com.andersonbco.desafio.services.UsersService;
+import com.andersonbco.desafio.entity.User;
+import com.andersonbco.desafio.service.UserService;
 
 import lombok.AllArgsConstructor;
 
@@ -18,16 +18,15 @@ import lombok.AllArgsConstructor;
 @RequestMapping(
     value = "/login")
 @AllArgsConstructor
-public class LoginResources {
+public class LoginResource {
 
-  private UsersService usersService;
+  private UserService userService;
 
-  @RequestMapping(
-      method = RequestMethod.POST,
+  @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<User> efetuarLogin(@RequestBody User user) {
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(usersService.efetuarLogin(user));
+    return ResponseEntity.status(HttpStatus.CREATED).body(userService.efetuarLogin(user));
   }
 }

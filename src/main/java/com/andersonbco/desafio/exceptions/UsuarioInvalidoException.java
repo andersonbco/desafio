@@ -1,5 +1,5 @@
 
-package com.andersonbco.desafio.services.exceptions;
+package com.andersonbco.desafio.exceptions;
 
 public class UsuarioInvalidoException extends RuntimeException {
 

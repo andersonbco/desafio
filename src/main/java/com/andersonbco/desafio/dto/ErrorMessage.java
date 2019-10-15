@@ -1,5 +1,5 @@
 
-package com.andersonbco.desafio.domain;
+package com.andersonbco.desafio.dto;
 
 public class ErrorMessage {
 
