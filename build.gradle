@@ -25,5 +25,6 @@ dependencies {
 }
 
 pmd {
+    ruleSets = []
     ruleSetFiles 'config/pmd/custom-pmd.xml'
 }
