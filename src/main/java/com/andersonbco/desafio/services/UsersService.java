@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +19,15 @@ import com.andersonbco.desafio.services.exceptions.SessaoInvalidaException;
 import com.andersonbco.desafio.services.exceptions.UsuarioInvalidoException;
 import com.andersonbco.desafio.services.exceptions.UsuarioNaoEncontradoException;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class UsersService {
 
   private UsersRepository usersRepository;
 
   private PhonesRepository phonesRepository;
-
-  @Autowired
-  public UsersService(UsersRepository usersRepository, PhonesRepository phonesRepository) {
-    this.usersRepository = usersRepository;
-    this.phonesRepository = phonesRepository;
-  }
 
   public User buscar(UUID id) {
 
@@ -76,10 +72,14 @@ public class UsersService {
 
     user.setToken(UUID.randomUUID());
 
-    // TODO não está salvando os telefones
-    user.getPhones().forEach(p -> phonesRepository.save(p));
+    usersRepository.save(user);
 
-    return usersRepository.save(user);
+    user.getPhones().forEach(p -> {
+      p.setUser(user);
+      phonesRepository.save(p);
+    });
+
+    return user;
   }
 
   public void excluir(UUID id) {
