@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.andersonbco.desafio.entity.User;
@@ -28,6 +29,8 @@ public class UserService {
   private UsersRepository usersRepository;
 
   private PhonesRepository phonesRepository;
+
+  private PasswordEncoder passwordEncoder;
 
   public User buscar(UUID id) {
 
@@ -66,6 +69,7 @@ public class UserService {
       throw new EmailJaExistenteException("E-mail já existente");
     }
 
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
     user.setCreated(LocalDateTime.now());
     user.setModified(LocalDateTime.now());
     user.setLastLogin(LocalDateTime.now());
@@ -108,7 +112,7 @@ public class UserService {
 
     if (user == null) {
       throw new UsuarioInvalidoException("Usuário e/ou senha inválidos");
-    } else if (!userLogin.getPassword().equalsIgnoreCase(user.getPassword())) {
+    } else if (!passwordEncoder.matches(userLogin.getPassword(), user.getPassword())) {
       throw new SenhaInvalidaException("Usuário e/ou senha inválidos");
     }
 
